@@ -1,0 +1,22 @@
+body {
+  font-family: monospace;
+}
+
+a.portal {
+  display: block;
+}
+
+.pages > .page:target ~ .page:last-child,
+.pages > .page {
+  display: none;
+}
+
+/* :last-child works, but for some reason .page:last-child will not */
+.pages > :last-child,
+.pages > .page:target {
+  display: block;
+}
+
+.pages > :last-child .breadcrumbs {
+  visibility: hidden;
+}

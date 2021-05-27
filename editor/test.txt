@@ -1,0 +1,26 @@
+$title: hello world!
+$show-pages-title: true
+
+hello world
+how are you
+
+and one more
+and more of the section at [google.com](#section)
+
+[section]
+  $test: hello bob!
+  this is the section
+
+  [something]
+    bob
+    bob is great
+
+    oh my, bob is amazing
+  [nested]
+    hello nested
+  after the nested
+[another section]
+  hello another section
+
+[[hidden section]]
+  this is a secret section that you can get to only with links.

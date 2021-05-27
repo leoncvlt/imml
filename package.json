@@ -1,0 +1,29 @@
+{
+  "name": "imml",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "start": "vite ./editor",
+    "build-editor": "vite build ./editor",
+    "build-library": "vite build ./lib"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "vite": "^2.3.4"
+  },
+  "dependencies": {
+    "marked": "^2.0.6"
+  },
+  "files": [
+    "lib"
+  ],
+  "main": "./lib/dist/imml.umd.js",
+  "module": "./lib/dist/imml.es.js",
+  "exports": {
+    ".": {
+      "import": "./lib/dist/imml.es.js",
+      "require": "./lib/dist/imml.umd.js"
+    }
+  }
+}
