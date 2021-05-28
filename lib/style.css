@@ -1,0 +1,146 @@
+body,
+html {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+}
+
+#imml {
+  --accent-color: dodgerblue;
+}
+
+@media (prefers-color-scheme: dark) {
+  #imml {
+    background: #121212;
+    color: #eeeeee;
+  }
+
+  #imml hr {
+    border-color: #555555;
+  }
+
+  #imml thead tr,
+  #imml tr {
+    border-color: #333333;
+  }
+
+  #imml code {
+    background: #333333;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  #imml body {
+    background: #ffffff;
+    color: #333333;
+  }
+
+  #imml hr {
+    border-color: #555555;
+  }
+
+  #imml thead,
+  #imml tr {
+    border-color: #333333;
+  }
+
+  #imml code {
+    background: #555555;
+  }
+}
+
+#imml {
+  /* font-family: Cascadia Code, monospace; */
+  font-family: sans-serif;
+  min-height: 100%;
+}
+
+
+#imml .pages {
+  margin: 0 auto;
+  max-width: 600px;
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
+#imml .page {
+  padding-top: 2em;
+  padding-bottom: 10em;
+}
+
+#imml .breadcrumbs {
+  font-family: monospace;
+  text-transform: uppercase;
+  font-size: small;
+}
+
+#imml p {
+  line-height: 22px;
+}
+
+#imml a {
+  width: fit-content;
+  color: var(--accent-color);
+  border-bottom: 1px dotted var(--accent-color);
+  text-decoration: none;
+}
+
+#imml hr {
+  border-style: solid;
+  border-bottom: 1px;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+#imml code {
+  border-radius: 0.25em;
+  padding: 0em 0.25em;
+  font-family: monospace;
+  display: inline-block;
+}
+#imml pre code {
+  padding: 0.5em 0.5em;
+}
+
+#imml img {
+  max-width: 100%;
+}
+
+#imml table {
+  margin-top: 0.25em;
+  border-collapse: collapse;
+  width: 100%;
+}
+#imml thead {
+  text-align: left;
+  font-weight: bold;
+}
+#imml thead tr {
+  border-bottom: 1px solid;
+}
+#imml tr {
+  border-bottom: 1px dashed;
+}
+#imml td,
+#imml th {
+  padding: 4px;
+}
+
+#imml a.portal {
+  display: block;
+}
+
+.pages > .page:target ~ .page:last-child,
+.pages > .page {
+  display: none;
+}
+
+/* :last-child works, but for some reason .page:last-child will not */
+.pages > :last-child,
+.pages > .page:target {
+  display: block;
+}
+
+.pages > :last-child .breadcrumbs {
+  visibility: hidden;
+}

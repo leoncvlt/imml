@@ -4,7 +4,7 @@ oh no, I'm outside of the home
 
 $style:
   body {
-    background: grey
+    background: lightgrey
   }
 
 [foo]
@@ -25,6 +25,7 @@ $style:
 
   [section(fancy section)]
     $test: hello bob!
+      
     this is the section
 
     [something]

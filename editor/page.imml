@@ -1,0 +1,139 @@
+[home]
+    # `imml`
+    `imml` (indented markdown markup language) is a markup language and static site generator whose purpose is to create minimalist, JS-free websites from a single plain text file.
+
+    ### but why?
+    `imml` was born from the desire to have a process to build a personal website which doesn't get more complicated than editing a single text file. `imml` could be the perfect choice for your knowledge base, recipe list, blog, no-fuss portfolio, low-fi zine, or anything you can think of.
+
+    ### features
+    - your whole website is a single, portable, offline, private plain text file
+    - blazing fast to load and build
+    - no javascript
+    - it's a [better motherfucking website](http://bettermotherfuckingwebsite.com/)
+    - you understand that _perfection is achieved, not when there is nothing more to add, but when there is nothing left to take away_
+
+    [showcase(markdown showcase)]
+        ## Text
+        this is a test paragraph
+        with manual line breaks...
+
+        ...or spaces. Whatever flows your boat!
+        
+        It's very easy to make some words **bold** and other words *italic* with Markdown. 
+  
+        You can even [link to Google!](http://google.com)
+
+        And of course, unicode! 😎
+
+        ## Structure
+        Sometimes it's useful to have different levels of headings to structure your documents. Start lines with a `#` to create headings. Multiple `##` in a row denote smaller heading sizes.
+
+        ### This is a third-tier heading
+
+        You can use one `#` all the way up to `######` six for different heading sizes.
+
+        If you'd like to quote someone, use the > character before the line:
+
+        > Coffee. The finest organic suspension ever devised... I beat the Borg with it.
+        > - Captain Janeway
+
+        ## Lists
+        Sometimes you want numbered lists:
+
+        1. One
+        2. Two
+        3. Three
+
+        Sometimes you want bullet points:
+
+        * Start a line with a star
+        * Profit!
+
+        Alternatively,
+
+        - Dashes work just as well
+        - And if you have sub points, put two spaces before the dash or star:
+          - Like this
+          - And this
+
+        ## Code
+        Wrap `code` in `back-ticks` to render code inline. Alternatively, fence a block of text with three back-ticks ` ``` ` to render a block of code:
+        ```
+        float Q_rsqrt( float number )
+        {
+            long i;
+            float x2, y;
+            const float threehalfs = 1.5F;
+
+            x2 = number * 0.5F;
+            y  = number;
+            i  = * ( long * ) &y;                       // evil floating point bit level hacking
+            i  = 0x5f3759df - ( i >> 1 );               // what the fuck? 
+            y  = * ( float * ) &i;
+            y  = y * ( threehalfs - ( x2 * y * y ) );   // 1st iteration
+            y  = y * ( threehalfs - ( x2 * y * y ) );   // 2nd iteration, this can be removed
+
+            return y;
+        }
+        ```
+
+        ## Images
+        ![Image of Yaktocat](https://i.pinimg.com/originals/39/95/0b/39950b377c4890460964775594a7c717.gif)
+
+        ## Tables
+        | Syntax      | Description |
+        | ----------- | ----------- |
+        | Header      | Title       |
+        | Paragraph   | Text        |
+
+    [guide(writing guide)]
+        ## Writing `imml`
+        Wrap text between square brackets `[example]`, then indent the next line to create a new page. Anything you write in that indented block will then be part of this new page.
+
+        When a page is create, its ID / hash `#` is inferred from the text inside the square brackets. As you can see from the address bar above, hashes are used to dictate which page is currently being displayed - this is achieved via CSS with the `target` selector.
+
+        The first page you create in the file is considered the home page of your site and will be displayed when no hash is specified.
+
+        You can keep creating wrapped square-bracket text and indent to create nested pages. When a page is created inside a page, a link to the new page is automatically added to the page at the position where the new indented nested block starts:
+
+        [newpage(Nested page)]
+            This page exists just to show an example of a nested page. There's really nothing else to see here! Use the breadcrumbs link at the top of the page to navigate back to a previous page.
+            
+        If you prefer to not create a link automatically, wrap the text with double square brackets `[[example]]`. The page will still be created, but it will be up to link your visitor to it. You can do so by creating a markdown link to the page hash: `[Link to the page](#hiddenpage)`. If your page ID has spaces in it, wrap the markdown link in `< >`: `[Link to the page](<#hidden page>)`
+
+        Note that when creating a hidden page, its structure still follows the indentation rules and will be reflected in the breadcrums paths at the top of the page.
+
+        If you want to use specify a label for the auto-generated link, include the label between round brackets just before closing the square brackets: `[newpage(Fancy new page)]` will create a page with the hash `#newpage`, but the link to it will display `Fancy new page`.
+
+        Any line that starts with `$` is considered an `option` and is not displayed in the document structure, rather parsed and used under the bonnet to change the generated site appeareances / behaviour. Options ar written in the `$[option] : [value]` format, or can precede indented blocks for options with multi-line values, for example the `$style` option...
+        ```
+        \$style:
+            body {
+                background: red;
+            }
+        ```
+        ...which will set the page background to red.
+
+        When added before the home page / at indentation zero, any `$option` will be applied to the whole website. Otherwise, it's applied to the page where the option text is being written. Note that some options are only valid in a context or the other.
+
+        For a full list of options and their effects, [click here](#options).
+
+        [[options]]
+            - `$accent-color: <color>`
+            Sets the accent color used on links.
+
+            - `$style: <text>`
+            The value of this option will be appended as `<style>` on the page. Use it to override the default `imml` style. Can be written as an indented block to support multi-line text, for example:
+              ```
+            \$style:
+                body {
+                    background: red;
+                }
+            ```
+            will set the page background to red.
+
+    [madewith(made with imml)]
+        Nobody here but chickens!
+    ---
+
+    Made with ❤ by [leoncvlt](https://github.com/leoncvlt)
