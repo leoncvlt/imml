@@ -4,12 +4,16 @@
   "description": "",
   "scripts": {
     "start": "vite ./editor",
+    "imml": "node ./lib/make.js",
     "build-editor": "vite build ./editor",
     "build-library": "vite build ./lib"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "commander": "^7.2.0",
+    "html-minifier": "^4.0.0",
+    "jsdom": "^16.6.0",
     "vite": "^2.3.4"
   },
   "dependencies": {
@@ -25,5 +29,8 @@
       "import": "./lib/dist/imml.es.js",
       "require": "./lib/dist/imml.umd.js"
     }
+  },
+  "bin": {
+    "imml": "./lib/make.js"
   }
 }
