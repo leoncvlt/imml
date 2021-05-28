@@ -1,13 +1,13 @@
-$show-pages-title: true
+
 
 oh no, I'm outside of the home
 
 $style:
   body {
-    background: lightgrey
+    background: grey
   }
 
-[home]
+[foo]
   # hello world!
   hello world
   how are you
@@ -20,9 +20,10 @@ $style:
   ```
 
   and one more
-  and more of the section at [google.com](#section)
+  search something at [google.com](https://www.google.com)
+  reach the hidden sections via [secret link](<#hidden section>)
 
-  [section]
+  [section(fancy section)]
     $test: hello bob!
     this is the section
 
@@ -31,11 +32,13 @@ $style:
       bob is great
 
       oh my, bob is amazing
+    [something]
+      mhmm this is a duplicate section. what will happen I wonder?
     [nested]
       hello nested
     after the nested
   [another section]
     hello another section
 
-  [[hidden section]]
+  [[hidden section(fancy hidden section)]]
     this is a secret section that you can get to only with links.
