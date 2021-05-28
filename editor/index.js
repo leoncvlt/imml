@@ -1,10 +1,9 @@
+import "./style.css";
+
 import test from "./test.txt?raw";
-import { tokenize, parse, render } from "../lib/imml";
+import { preprocess, transform, process, render } from "../lib/imml";
 
-const tokens = tokenize(test);
-console.log(tokenize(test));
-
-const parsed = parse(tokens);
-console.log(parsed);
-
-render(parsed, document);
+const nodes = preprocess(test);
+const tokens = transform(nodes);
+const data = process(tokens);
+render(data, document);

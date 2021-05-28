@@ -2,6 +2,11 @@ $show-pages-title: true
 
 oh no, I'm outside of the home
 
+$style:
+  body {
+    background: lightgrey
+  }
+
 [home]
   # hello world!
   hello world
