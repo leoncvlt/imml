@@ -12,6 +12,13 @@ $style:
   hello world
   how are you
 
+  ```
+  hello world!
+    function a = {
+    b + 2;
+  }
+  ```
+
   and one more
   and more of the section at [google.com](#section)
 
