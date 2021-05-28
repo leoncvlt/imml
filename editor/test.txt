@@ -1,26 +1,29 @@
-$title: hello world!
 $show-pages-title: true
 
-hello world
-how are you
+oh no, I'm outside of the home
 
-and one more
-and more of the section at [google.com](#section)
+[home]
+  # hello world!
+  hello world
+  how are you
 
-[section]
-  $test: hello bob!
-  this is the section
+  and one more
+  and more of the section at [google.com](#section)
 
-  [something]
-    bob
-    bob is great
+  [section]
+    $test: hello bob!
+    this is the section
 
-    oh my, bob is amazing
-  [nested]
-    hello nested
-  after the nested
-[another section]
-  hello another section
+    [something]
+      bob
+      bob is great
 
-[[hidden section]]
-  this is a secret section that you can get to only with links.
+      oh my, bob is amazing
+    [nested]
+      hello nested
+    after the nested
+  [another section]
+    hello another section
+
+  [[hidden section]]
+    this is a secret section that you can get to only with links.
