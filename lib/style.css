@@ -55,7 +55,6 @@ html {
   min-height: 100%;
 }
 
-
 #imml .pages {
   margin: 0 auto;
   max-width: 600px;
@@ -100,6 +99,9 @@ html {
 }
 #imml pre code {
   padding: 0.5em 0.5em;
+}
+#imml pre {
+  overflow-x: auto;
 }
 
 #imml img {

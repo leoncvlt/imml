@@ -1,14 +1,34 @@
 <!DOCTYPE html>
-<html lang="en"></html>
-<html>
+<html lang="en">
   <head>
-    <title>imml sandbox</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./style.css" />
+    <title>imml</title>
   </head>
-
   <body>
+    <main>
+      <div id="loading">
+        <img class="logo" src="./assets/logo.png" />
+      </div>
+      <nav>
+        <img class="logo" src="./assets/logo.png" />
+        <span></span>
+        <button class="icon save"></button>
+        <button class="icon load"></button>
+        <button class="icon export"></button>
+        
+        <input type="file" class="load" style="display: none" />
+        <span class="space"></span>
+
+        <button class="icon npm"></button>
+        <button class="icon github"></button>
+      </nav>
+      <div id="app">
+        <div id="editor"></div>
+        <div id="site"></div>
+      </div>
+    </main>
     <script type="module" src="/index.js"></script>
   </body>
 </html>
