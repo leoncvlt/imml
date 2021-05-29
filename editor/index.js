@@ -111,13 +111,20 @@ fileinput.addEventListener("change", function () {
 // export
 document.querySelector("button.export").addEventListener("click", () => {
   const a = document.createElement("a");
-  const head = `<head><style>${defaultStyle}</style></head>`;
+  const head = [
+    `<head>`,
+    `<meta charset="UTF-8">`,
+    `<meta http-equiv="X-UA-Compatible" content="IE=edge">`,
+    `<meta name="viewport" content="width=device-width, initial-scale=1.0">`,
+    `<style>${defaultStyle}</style>`,
+    `</head>`,
+  ].join("");
   const body = `<body>${document.getElementById("site").innerHTML}</body>`;
   const page = `<!doctype html><html>${head}${body}</html>`;
   const file = new Blob([page], { type: "text/yaml" });
 
   a.href = URL.createObjectURL(file);
-  a.download = "my-yawml-site.html";
+  a.download = "my-imml-site.html";
   a.click();
 
   URL.revokeObjectURL(a.href);
