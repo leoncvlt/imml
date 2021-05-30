@@ -1,3 +1,26 @@
+:root {
+  --LIGTHS-ON: initial;
+  --LIGHTS-OFF: ;
+}
+
+html,
+[data-theme="light"] {
+  --light: var(--LIGTHS-ON);
+  --dark: var(--LIGHTS-OFF);
+}
+
+[data-theme="dark"] {
+  --light: var(--LIGHTS-OFF);
+  --dark: var(--LIGTHS-ON);
+}
+
+@media (prefers-color-scheme: dark) {
+  html {
+    --light: var(--LIGHTS-OFF);
+    --dark: var(--LIGTHS-ON);
+  }
+}
+
 body,
 html {
   height: 100%;
@@ -6,53 +29,19 @@ html {
 }
 
 #imml {
-  --accent-color: dodgerblue;
-}
+  --imml-accent: dodgerblue;
 
-@media (prefers-color-scheme: dark) {
-  #imml {
-    background: #121212;
-    color: #eeeeee;
-  }
-
-  #imml hr {
-    border-color: #555555;
-  }
-
-  #imml thead tr,
-  #imml tr {
-    border-color: #333333;
-  }
-
-  #imml code {
-    background: #333333;
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  #imml body {
-    background: #ffffff;
-    color: #333333;
-  }
-
-  #imml hr {
-    border-color: #555555;
-  }
-
-  #imml thead,
-  #imml tr {
-    border-color: #333333;
-  }
-
-  #imml code {
-    background: #555555;
-  }
+  --imml-background: var(--light, #ffffff) var(--dark, #121212);
+  --imml-text: var(--light, #333333) var(--dark, #eeeeee);
+  --imml-text-inverse: var(--light, #eeeeee) var(--dark, #333333);
 }
 
 #imml {
   /* font-family: Cascadia Code, monospace; */
   font-family: sans-serif;
   min-height: 100%;
+  color: var(--imml-text);
+  background: var(--imml-background);
 }
 
 #imml .pages {
@@ -79,8 +68,8 @@ html {
 
 #imml a {
   width: fit-content;
-  color: var(--accent-color);
-  border-bottom: 1px dotted var(--accent-color);
+  color: var(--imml-accent);
+  border-bottom: 1px dotted var(--imml-accent);
   text-decoration: none;
 }
 
@@ -92,6 +81,7 @@ html {
 }
 
 #imml code {
+  background: var(--imml-text-inverse);
   border-radius: 0.25em;
   padding: 0em 0.25em;
   font-family: monospace;

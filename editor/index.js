@@ -1,9 +1,10 @@
 import "./style.css";
 
 import example from "./page.imml?raw";
+import defaultStyle from "../lib/style.css";
 
 import { render, parse } from "../lib/imml";
-import defaultStyle from "../lib/style.css";
+import { language, darkTheme, lightTheme } from "./imml.language";
 
 // import * as monaco from "monaco-editor";
 
@@ -26,10 +27,32 @@ self.MonacoEnvironment = {
 monaco.languages.register({
   id: "imml",
 });
+monaco.languages.setMonarchTokensProvider("imml", language);
+
+const getColorScheme = () => {
+  let setting = document.documentElement.getAttribute("theme");
+  if (setting) {
+    return setting;
+  }
+
+  let theme = "light";
+  if (localStorage.getItem("theme")) {
+    if (localStorage.getItem("theme") == "dark") {
+      theme = "dark";
+    }
+  } else if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
+    theme = "dark";
+  }
+  document.documentElement.setAttribute("data-theme", theme);
+  return theme;
+};
+
+monaco.editor.defineTheme("imml-theme", getColorScheme() === "light" ? lightTheme : darkTheme);
 
 const editor = monaco.editor.create(document.getElementById("editor"), {
   value: example,
   language: "imml",
+  theme: "imml-theme",
   lineNumbers: false,
   showFoldingControls: "always",
   wrappingIndent: "same",
@@ -40,6 +63,19 @@ const editor = monaco.editor.create(document.getElementById("editor"), {
   },
   automaticLayout: true,
 });
+
+const toggleColorScheme = () => {
+  const currentColorScheme = getColorScheme();
+  if (currentColorScheme === "light") {
+    localStorage.setItem("theme", "dark");
+    document.documentElement.setAttribute("data-theme", "dark");
+    monaco.editor.defineTheme("imml-theme", darkTheme);
+  } else {
+    localStorage.setItem("theme", "light");
+    document.documentElement.setAttribute("data-theme", "light");
+    monaco.editor.defineTheme("imml-theme", lightTheme);
+  }
+};
 
 let updateTimeout = null;
 const root = document.getElementById("site");
@@ -128,6 +164,11 @@ document.querySelector("button.export").addEventListener("click", () => {
   a.click();
 
   URL.revokeObjectURL(a.href);
+});
+
+// theme toggle
+document.querySelector("button.theme").addEventListener("click", () => {
+  toggleColorScheme();
 });
 
 // loading screen
