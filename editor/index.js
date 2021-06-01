@@ -24,9 +24,7 @@ self.MonacoEnvironment = {
   },
 };
 
-monaco.languages.register({
-  id: "imml",
-});
+monaco.languages.register({ id: "imml" });
 monaco.languages.setMonarchTokensProvider("imml", language);
 
 const getColorScheme = () => {
@@ -58,6 +56,9 @@ const editor = monaco.editor.create(document.getElementById("editor"), {
   wrappingIndent: "same",
   quickSuggestions: false,
   wordWrap: "on",
+  padding: {
+    top: 16,
+  },
   minimap: {
     enabled: false,
   },
@@ -119,13 +120,30 @@ editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.KEY_S, () => {
 
 updateSite(editor);
 
+// infer site name for filename methods
+// either the first found $title option, or the first text line, or a generic name
+const guessSiteName = () => {
+  const siteContent = editor.getValue();
+  const titleIndex = siteContent.search(/^\$title/gm);
+  if (titleIndex !== -1) {
+    const titleStart = siteContent.substring(titleIndex);
+    const titleTokens = titleStart.substring(0, titleStart.indexOf("\n")).split(":");
+    return titleTokens[titleTokens.length - 1].trim();
+  }
+  const siteTokens = siteContent.split("\n");
+  if (siteTokens.length > 0 && siteTokens[0]) {
+    return siteTokens[0].trim();
+  }
+  return "my-imml-site";
+};
+
 // save
 document.querySelector("button.save").addEventListener("click", () => {
   const a = document.createElement("a");
   const file = new Blob([editor.getValue()], { type: "text/plain" });
 
   a.href = URL.createObjectURL(file);
-  a.download = "my-imml-site.imml";
+  a.download = `${guessSiteName()}.imml`;
   a.click();
 
   URL.revokeObjectURL(a.href);
@@ -160,7 +178,7 @@ document.querySelector("button.export").addEventListener("click", () => {
   const file = new Blob([page], { type: "text/yaml" });
 
   a.href = URL.createObjectURL(file);
-  a.download = "my-imml-site.html";
+  a.download = `index.html`;
   a.click();
 
   URL.revokeObjectURL(a.href);
