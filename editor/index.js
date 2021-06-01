@@ -4,14 +4,14 @@ import example from "./page.imml?raw";
 import defaultStyle from "../lib/style.css";
 
 import { render, parse } from "../lib/imml";
-import { language, darkTheme, lightTheme } from "./imml.language";
+import { language, configuration, darkTheme, lightTheme } from "./imml.language";
 
 // import * as monaco from "monaco-editor";
 
 import "monaco-editor/esm/vs/editor/browser/controller/coreCommands.js";
 import "monaco-editor/esm/vs/editor/contrib/caretOperations/caretOperations.js";
 import "monaco-editor/esm/vs/editor/contrib/clipboard/clipboard.js";
-// import "monaco-editor/esm/vs/editor/contrib/comment/comment.js";
+import "monaco-editor/esm/vs/editor/contrib/comment/comment.js";
 import "monaco-editor/esm/vs/editor/contrib/find/findController.js";
 import "monaco-editor/esm/vs/editor/contrib/folding/folding.js";
 import * as monaco from "monaco-editor/esm/vs/editor/editor.api.js";
@@ -26,6 +26,7 @@ self.MonacoEnvironment = {
 
 monaco.languages.register({ id: "imml" });
 monaco.languages.setMonarchTokensProvider("imml", language);
+monaco.languages.setLanguageConfiguration("imml", configuration);
 
 const getColorScheme = () => {
   let setting = document.documentElement.getAttribute("theme");
@@ -82,6 +83,8 @@ let updateTimeout = null;
 const root = document.getElementById("site");
 const updateSite = (editor) => {
   clearTimeout(updateTimeout);
+  const currentPosition = editor.getPosition();
+  const currentScroll = root.scrollTop;
 
   while (root.firstChild) {
     root.removeChild(root.lastChild);
@@ -99,10 +102,11 @@ const updateSite = (editor) => {
     root.append(error);
   }
 
-  const currentPosition = editor.getPosition();
   if (window.location.hash) {
     window.location = window.location;
   }
+  console.log(root.scrollTop, currentScroll);
+  root.scrollTo(0, currentScroll);
   editor.setPosition(currentPosition);
   editor.focus();
 };

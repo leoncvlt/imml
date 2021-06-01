@@ -1,3 +1,10 @@
+const configuration = {
+  comments: {
+    lineComment: "//",
+    blockComment: ["/*", "*/"],
+  },
+};
+
 // extended from the markdown language definition at
 // https://microsoft.github.io/monaco-editor/monarch.html
 const language = {
@@ -66,6 +73,8 @@ const language = {
       // markup within lines
       { include: "@linecontent" },
 
+      { include: '@whitespace' },
+
       // edited: imml options (line starting with $)
       [/(^\$.*)((?::))(.*)/, ["keyword", "keyword", "variable.source"]],
     ],
@@ -98,7 +107,10 @@ const language = {
       [/\{+[^}]+\}+/, "string.target"],
       [/(!?\[)((?:[^\]\\]|@escapes)*)(\]\([^\)]+\))/, ["string.link", "", "string.link"]],
       // edited to include double square brackets
-      [/(!?\[)((?:[^\]\\]|@escapes)*)(\]{0,2})/, "imml.page"],
+      [/(!?\[[^.])((?:[^\]\\]|@escapes)*)(\]{0,2})/, "imml.page"],
+
+      // commented-out page, starting with . between square brackets
+      [/(!?\[\.)((?:[^\]\\]|@escapes)*)(\]{0,2})/, "comment"],
 
       // or html
       { include: "html" },
@@ -124,6 +136,12 @@ const language = {
       [/<\/(\w+)\s*>/, { token: "tag" }],
 
       [/<!--/, "comment", "@comment"],
+    ],
+
+    whitespace: [
+      [/[ \t\r\n]+/, ""],
+      [/\/\*/, "comment", "@comment"],
+      [/\/\/.*$/, "comment"],
     ],
 
     comment: [
@@ -206,4 +224,4 @@ const createTheme = (base) => ({
 const lightTheme = createTheme("vs");
 const darkTheme = createTheme("vs-dark");
 
-export { language, lightTheme, darkTheme };
+export { language, configuration, lightTheme, darkTheme };
