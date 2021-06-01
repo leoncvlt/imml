@@ -1,23 +1,33 @@
 :root {
-  --LIGTHS-ON: initial;
-  --LIGHTS-OFF: ;
+  --imml-text-light: #333333;
+  --imml-text-dark: #eeeeee;
+  --imml-background-light: #ffffff;
+  --imml-background-dark: #121212;
+  --imml-accent-light: dodgerblue;
+  --imml-accent-dark: dodgerblue;
 }
 
 html,
 [data-theme="light"] {
-  --light: var(--LIGTHS-ON);
-  --dark: var(--LIGHTS-OFF);
+  --imml-background: var(--imml-background-light);
+  --imml-text: var(--imml-text-light);
+  --imml-text-inverse: var(--imml-text-dark);
+  --imml-accent: var(--imml-accent-light);
 }
 
 [data-theme="dark"] {
-  --light: var(--LIGHTS-OFF);
-  --dark: var(--LIGTHS-ON);
+  --imml-background: var(--imml-background-dark);
+  --imml-text: var(--imml-text-dark);
+  --imml-text-inverse: var(--imml-text-light);
+  --imml-accent: var(--imml-accent-dark);
 }
 
 @media (prefers-color-scheme: dark) {
   html {
-    --light: var(--LIGHTS-OFF);
-    --dark: var(--LIGTHS-ON);
+    --imml-background: var(--imml-background-dark);
+    --imml-text: var(--imml-text-dark);
+    --imml-text-inverse: var(--imml-text-light);
+    --imml-accent: var(--imml-accent-dark);
   }
 }
 
@@ -26,14 +36,6 @@ html {
   height: 100%;
   width: 100%;
   margin: 0;
-}
-
-#imml {
-  --imml-accent: dodgerblue;
-
-  --imml-background: var(--light, #ffffff) var(--dark, #121212);
-  --imml-text: var(--light, #333333) var(--dark, #eeeeee);
-  --imml-text-inverse: var(--light, #eeeeee) var(--dark, #333333);
 }
 
 #imml {
