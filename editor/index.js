@@ -6,15 +6,7 @@ import defaultStyle from "../lib/style.css";
 import { render, parse } from "../lib/imml";
 import { language, configuration, darkTheme, lightTheme } from "./imml.language";
 
-// import * as monaco from "monaco-editor";
-
-import "monaco-editor/esm/vs/editor/browser/controller/coreCommands.js";
-import "monaco-editor/esm/vs/editor/contrib/caretOperations/caretOperations.js";
-import "monaco-editor/esm/vs/editor/contrib/clipboard/clipboard.js";
-import "monaco-editor/esm/vs/editor/contrib/comment/comment.js";
-import "monaco-editor/esm/vs/editor/contrib/find/findController.js";
-import "monaco-editor/esm/vs/editor/contrib/folding/folding.js";
-import * as monaco from "monaco-editor/esm/vs/editor/editor.api.js";
+import * as monaco from "monaco-editor";
 
 import editorWorker from "monaco-editor/esm/vs/editor/editor.worker?worker";
 
@@ -49,7 +41,7 @@ const getColorScheme = () => {
 monaco.editor.defineTheme("imml-theme", getColorScheme() === "light" ? lightTheme : darkTheme);
 
 const editor = monaco.editor.create(document.getElementById("editor"), {
-  value: example,
+  value: localStorage.getItem("imml-document") || example,
   language: "imml",
   theme: "imml-theme",
   lineNumbers: false,
@@ -83,8 +75,11 @@ let updateTimeout = null;
 const root = document.getElementById("site");
 const updateSite = (editor) => {
   clearTimeout(updateTimeout);
+
   const currentPosition = editor.getPosition();
   const currentScroll = root.scrollTop;
+
+  localStorage.setItem("imml-document", editor.getValue());
 
   while (root.firstChild) {
     root.removeChild(root.lastChild);
@@ -105,7 +100,6 @@ const updateSite = (editor) => {
   if (window.location.hash) {
     window.location = window.location;
   }
-  console.log(root.scrollTop, currentScroll);
   root.scrollTo(0, currentScroll);
   editor.setPosition(currentPosition);
   editor.focus();
@@ -140,6 +134,14 @@ const guessSiteName = () => {
   }
   return "my-imml-site";
 };
+
+// reset
+document.querySelector("button.reset").addEventListener("click", () => {
+  if (confirm("Clear local storage and reset the imml document?")) {
+    localStorage.removeItem("imml-document");
+    window.location.reload();
+  }
+});
 
 // save
 document.querySelector("button.save").addEventListener("click", () => {

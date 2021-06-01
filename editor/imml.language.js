@@ -3,6 +3,16 @@ const configuration = {
     lineComment: "//",
     blockComment: ["/*", "*/"],
   },
+
+  autoClosingPairs: [
+    { open: "{", close: "}" },
+    { open: "[", close: "]" },
+    { open: "(", close: ")" },
+    { open: '"', close: '"', notIn: ["string"] },
+    { open: "'", close: "'", notIn: ["string", "comment"] },
+    { open: "`", close: "`", notIn: ["string", "comment"] },
+    { open: "/**", close: " */", notIn: ["string"] },
+  ],
 };
 
 // extended from the markdown language definition at
@@ -73,8 +83,6 @@ const language = {
       // markup within lines
       { include: "@linecontent" },
 
-      { include: '@whitespace' },
-
       // edited: imml options (line starting with $)
       [/(^\$.*)((?::))(.*)/, ["keyword", "keyword", "variable.source"]],
     ],
@@ -112,6 +120,10 @@ const language = {
       // commented-out page, starting with . between square brackets
       [/(!?\[\.)((?:[^\]\\]|@escapes)*)(\]{0,2})/, "comment"],
 
+      // comments
+      [/\/\*/, "comment", "@comment"],
+      [/\/\/.*$/, "comment"],
+
       // or html
       { include: "html" },
     ],
@@ -123,7 +135,7 @@ const language = {
     // we cannot correctly tokenize it in that mode yet.
     html: [
       // html tags
-      [/<(\w+)\/>/, "tag"],
+      [/\t<(\w+)\/>/, "tag"],
       [
         /<(\w+)/,
         {
@@ -136,12 +148,6 @@ const language = {
       [/<\/(\w+)\s*>/, { token: "tag" }],
 
       [/<!--/, "comment", "@comment"],
-    ],
-
-    whitespace: [
-      [/[ \t\r\n]+/, ""],
-      [/\/\*/, "comment", "@comment"],
-      [/\/\/.*$/, "comment"],
     ],
 
     comment: [
