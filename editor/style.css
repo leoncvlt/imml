@@ -43,6 +43,11 @@ main {
   background: white;
 }
 
+img.logo {
+  height: 16px;
+  image-rendering: pixelated;
+}
+
 nav {
   height: 48px;
   padding-left: 1rem;
@@ -53,8 +58,12 @@ nav {
   align-items: center;
 }
 
-nav .space {
+nav .flex {
   flex-grow: 1;
+}
+
+nav .space {
+  width: 24px;
 }
 
 nav,
@@ -97,7 +106,6 @@ nav {
 }
 
 nav .logo {
-  height: 24px;
   filter: invert();
   margin-right: 2em;
 }
