@@ -82,6 +82,15 @@ html {
   margin-bottom: 1em;
 }
 
+#imml blockquote {
+  border-left: 0.5em solid var(--imml-text-inverse);
+  padding: 0 1em;
+}
+
+#imml blockquote p {
+  font-style: italic;
+}
+
 #imml code {
   background: var(--imml-text-inverse);
   border-radius: 0.25em;
