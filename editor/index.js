@@ -192,19 +192,26 @@ fileinput.addEventListener("change", function () {
 
 // export
 document.querySelector("button.export").addEventListener("click", () => {
-  const a = document.createElement("a");
+  const title = document.querySelector("head title");
+  const description = document.querySelector("head meta[name='description']");
+  const extraStyle = document.querySelector("style.imml");
+
   const head = [
     `<head>`,
+    title?.outerHTML,
+    description?.outerHTML,
     `<meta charset="UTF-8">`,
     `<meta http-equiv="X-UA-Compatible" content="IE=edge">`,
     `<meta name="viewport" content="width=device-width, initial-scale=1.0">`,
     `<style>${defaultStyle}</style>`,
+    extraStyle?.outerHTML,
     `</head>`,
   ].join("");
   const body = `<body>${document.getElementById("site").innerHTML}</body>`;
-  const page = `<!doctype html><html>${head}${body}</html>`;
+  const page = `<!doctype html><html data-theme=${getColorScheme()}>${head}${body}</html>`;
   const file = new Blob([page], { type: "text/yaml" });
 
+  const a = document.createElement("a");
   a.href = URL.createObjectURL(file);
   a.download = `index.html`;
   a.click();
