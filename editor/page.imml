@@ -127,9 +127,9 @@ $description: generate static site from a single plain text file
         Any line that starts with `//` is a comment and won't be parsed. Any page that that starts with `.` (i.e.  `[.page]`) won't be parsed, nor inserted in the document structure. Good for drafts.
 
         ### Options
-        Any line that starts with `$` is considered an `option` and is not displayed in the document structure, but it will be parsed and used under the bonnet to change the generated site appeareances / behaviour. 
+        Any line that starts with `$` is considered an `option` and is not displayed in the document structure, but it will be parsed and used under the bonnet to change the generated site appearance  / behaviour. 
         
-        Options ar written in the `$[option] : [value]` format, or can precede indented blocks for options with multi-line values, like the `$style` option:
+        Options are written in the `$[option] : [value]` format, or can precede indented blocks for options with multi-line values, like the `$style` option:
         ```
         \$style:
             body {
