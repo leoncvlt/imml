@@ -23,8 +23,7 @@ Wrap text between `[square brackets]` to create a page and a link to it, then in
 ```js
 import { parse, render } from "imml";
 
-// if you're not forking your own style,
-// make sure to import the default one
+// import the default style, or make your own
 import "imml/lib/style.css"; 
 
 const text = `
