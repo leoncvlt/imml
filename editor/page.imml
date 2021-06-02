@@ -203,7 +203,7 @@ $style:
     [data-theme="dark"] img.site-logo {
         filter: invert();
     }
-    a[target="_blank"]:after {
+    a.external:after {
         content: " ↗";
     }
     </style>

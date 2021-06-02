@@ -128,7 +128,7 @@ html {
   padding: 4px;
 }
 
-#imml a.portal {
+#imml a.portal:not(.inline) {
   display: block;
 }
 
