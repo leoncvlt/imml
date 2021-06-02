@@ -1,0 +1,18 @@
+#imml a.portal:not(.inline) {
+  display: block;
+}
+
+#imml .pages > .page:target ~ .page:last-child,
+#imml .pages > .page {
+  display: none;
+}
+
+/* :last-child works, but for some reason .page:last-child will not */
+#imml .pages > :last-child,
+#imml .pages > .page:target {
+  display: block;
+}
+
+#imml .pages > :last-child .breadcrumbs {
+  visibility: hidden;
+}

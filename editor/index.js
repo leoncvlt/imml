@@ -1,6 +1,7 @@
 import "./style.css";
 
 import example from "./page.imml?raw";
+import baseStyle from "../lib/base.css";
 import defaultStyle from "../lib/style.css";
 
 import { render, parse } from "../lib/imml";
@@ -203,12 +204,13 @@ document.querySelector("button.export").addEventListener("click", () => {
     `<meta charset="UTF-8">`,
     `<meta http-equiv="X-UA-Compatible" content="IE=edge">`,
     `<meta name="viewport" content="width=device-width, initial-scale=1.0">`,
+    `<style>${baseStyle}</style>`,
     `<style>${defaultStyle}</style>`,
     extraStyle?.outerHTML,
     `</head>`,
   ].join("");
   const body = `<body>${document.getElementById("site").innerHTML}</body>`;
-  const page = `<!doctype html><html data-theme=${getColorScheme()}>${head}${body}</html>`;
+  const page = `<!doctype html><html>${head}${body}</html>`;
   const file = new Blob([page], { type: "text/yaml" });
 
   const a = document.createElement("a");
