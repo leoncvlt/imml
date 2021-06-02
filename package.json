@@ -1,6 +1,6 @@
 {
   "name": "imml",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Create minimalist, blazing fast no-js websites from a single plain text file",
   "scripts": {
     "start": "vite ./editor",
@@ -12,15 +12,22 @@
   "repository": "https://github.com/leoncvlt/imml",
   "funding": "https://www.buymeacoffee.com/leoncvlt",
   "license": "MIT",
+  "keywords": [
+    "markdown",
+    "parse",
+    "static",
+    "site",
+    "generator"
+  ],
   "devDependencies": {
     "commander": "^7.2.0",
     "html-minifier": "^4.0.0",
-    "monaco-editor": "^0.24.0",
     "jsdom": "^16.6.0",
-    "vite": "^2.3.4"
+    "monaco-editor": "^0.24.0",
+    "vite": "^2.3.6"
   },
   "dependencies": {
-    "marked": "^2.0.6"
+    "marked": "^2.0.7"
   },
   "files": [
     "lib"
