@@ -6,7 +6,29 @@ import defaultStyle from "../lib/style.css";
 import { render, parse } from "../lib/imml";
 import { language, configuration, darkTheme, lightTheme } from "./imml.language";
 
-import * as monaco from "monaco-editor";
+// import * as monaco from "monaco-editor";
+
+import "monaco-editor/esm/vs/editor/browser/controller/coreCommands.js";
+import "monaco-editor/esm/vs/editor/contrib/bracketMatching/bracketMatching.js";
+import "monaco-editor/esm/vs/editor/contrib/caretOperations/caretOperations.js";
+import "monaco-editor/esm/vs/editor/contrib/caretOperations/transpose.js";
+import "monaco-editor/esm/vs/editor/contrib/clipboard/clipboard.js";
+import "monaco-editor/esm/vs/editor/contrib/colorPicker/colorContributions.js";
+import "monaco-editor/esm/vs/editor/contrib/comment/comment.js";
+import "monaco-editor/esm/vs/editor/contrib/cursorUndo/cursorUndo.js";
+import "monaco-editor/esm/vs/editor/contrib/find/findController.js";
+import "monaco-editor/esm/vs/editor/contrib/folding/folding.js";
+import "monaco-editor/esm/vs/editor/contrib/indentation/indentation.js";
+import "monaco-editor/esm/vs/editor/contrib/linesOperations/linesOperations.js";
+import "monaco-editor/esm/vs/editor/contrib/links/links.js";
+import "monaco-editor/esm/vs/editor/contrib/multicursor/multicursor.js";
+
+import "monaco-editor/esm/vs/language/css/monaco.contribution.js";
+import "monaco-editor/esm/vs/language/html/monaco.contribution.js";
+import "monaco-editor/esm/vs/basic-languages/css/css.contribution.js";
+import "monaco-editor/esm/vs/basic-languages/html/html.contribution.js";
+
+import * as monaco from "monaco-editor/esm/vs/editor/editor.api.js";
 
 import editorWorker from "monaco-editor/esm/vs/editor/editor.worker?worker";
 
