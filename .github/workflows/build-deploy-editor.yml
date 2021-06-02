@@ -1,0 +1,27 @@
+name: Build and deploy editor
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+    
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+      runs-on: ubuntu-latest
+      steps:
+        - name: Checkout
+          uses: actions/checkout@v2.3.1
+
+        - name: Install and Build
+          run: |
+            npm install
+            npm run build-editor
+
+        - name: Deploy
+          uses: JamesIves/github-pages-deploy-action@4.1.3
+          with:
+            branch: gh-pages
+            folder: editor/dist
