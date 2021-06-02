@@ -39,7 +39,6 @@ html {
 }
 
 #imml {
-  /* font-family: Cascadia Code, monospace; */
   font-family: sans-serif;
   min-height: 100%;
   color: var(--imml-text);
