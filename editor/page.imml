@@ -1,62 +1,70 @@
-[home]
-    # `imml`
-    `imml` (indented markdown markup language) is a markup language and static site generator whose purpose is to create minimalist, JS-free websites from a single plain text file.
+$title: imml
+$description: generate static site from a single plain text file
 
-    ### but why?
-    `imml` was born from the desire to have a process to build a personal website which doesn't get more complicated than editing a single text file. `imml` could be the perfect choice for your knowledge base, recipe list, blog, no-fuss portfolio, low-fi zine, or anything you can think of.
+[home]
+    <img class="site-logo" src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAICAYAAADjoT9jAAAAVElEQVQ4T7WSQQoAIAgE11/7BH9dKCUSCR7Uk9SwgxlhuAjAOg7tu8ozX8G9yESRrzD0FYgImNkCYg/A+QqjfDZB23lb0LNLe2qdclSgks6f8136Bh9eL5/EVkSDAAAAAElFTkSuQmCC'/>
+
+    `imml` (indented markdown markup language) is a markup language and static site generator whose purpose is to create minimalist, blazing fast no-javascript websites from a single, portable plain text file.
+
+    The project was born from the desire to have a process to build a personal website which doesn't get more complicated than editing a single text file and calling it a day. Could be the perfect choice for your blog, public brain dump, recipe list, no-fuss portfolio, low-fi zine, or anything you can think of.
 
     ### features
     - your whole website is a single, portable, offline, private plain text file
     - blazing fast to load and build
     - no javascript
     - it's a [better motherfucking website](http://bettermotherfuckingwebsite.com/)
-    - you understand that _perfection is achieved, not when there is nothing more to add, but when there is nothing left to take away_
+    - makes you understand that _perfection is achieved, not when there is nothing more to add, but when there is nothing left to take away_
 
-    [showcase(markdown showcase)]
-        ## Text
-        this is a test paragraph
-        with manual line breaks...
-
-        ...or spaces. Whatever flows your boat!
-        
-        It's very easy to make some words **bold** and other words *italic* with Markdown. 
+    ### using `imml`
+    Write in the editor on the left side and it will be parsed in real-time into the results shown on the right. Try that now! 
+    
+    // That's it, try editing something below this line! (P.S. this is a comment and will be ignored!)
+    
+    The web-based editor saves to localstorage, so feel free to come back to it later on - or you can manually save and load a file by using the toolbar buttons on the top left. The export button exports your site as a single .html file.
   
-        You can even [link to Google!](http://google.com)
+    Alternatively, write a file locally on your machine and then, with node.js installed, run `npx imml <path to your text file>` to generate a minified html file. Run `npx imml --help` or [click here](#cli) to find out more about the command line tool.
 
-        And of course, unicode! 😎
+    ### basic writing guide
+    Wrap text between `[square brackets]` to create a page and a link to it, then indent and write markdown to create the content for that page. The first page in the imml document is your home. Nest pages to create a site structure.
 
-        ## Structure
-        Sometimes it's useful to have different levels of headings to structure your documents. Start lines with a `#` to create headings. Multiple `##` in a row denote smaller heading sizes.
+    [markdown(markdown showcase)]
+        ## Writing Markdown
+        Make words **bold** by wrapping them in `**` or *italic* by wrapping them in `*`. Add [inline links](http://github.com/leoncvlt) with this syntax: `[link text](url)`.
+        Insert a newline for a manual line break...
+
+        ...or more than one. Whatever flows your boat!
+
+        Start lines with a `#` to create headings. Multiple `##` in a row denote smaller heading sizes:
 
         ### This is a third-tier heading
 
         You can use one `#` all the way up to `######` six for different heading sizes.
 
-        If you'd like to quote someone, use the > character before the line:
+        To insert a quote, start lines with a `>`:
 
         > Coffee. The finest organic suspension ever devised... I beat the Borg with it.
         > - Captain Janeway
 
-        ## Lists
-        Sometimes you want numbered lists:
+        Make ordered lists by starting lines with numbers:
 
         1. One
         2. Two
         3. Three
 
-        Sometimes you want bullet points:
+        Or, to make unordered, bullet lists:
 
         * Start a line with a star
-        * Profit!
-
-        Alternatively,
+        * Keep listing
 
         - Dashes work just as well
-        - And if you have sub points, put two spaces before the dash or star:
-          - Like this
-          - And this
+        - To make sub-points, add two spaces before the next item:
+            - Like this
+            - And this
 
-        ## Code
+        Add a separator with three  or more hyphens `---`:
+
+        ---
+
         Wrap `code` in `back-ticks` to render code inline. Alternatively, fence a block of text with three back-ticks ` ``` ` to render a block of code:
         ```
         float Q_rsqrt( float number )
@@ -77,63 +85,125 @@
         }
         ```
 
-        ## Images
-        ![Image of Yaktocat](https://i.pinimg.com/originals/39/95/0b/39950b377c4890460964775594a7c717.gif)
+        Add images with this syntax: `![alt text](image_url)`
+        
+        ![Akira](https://i.pinimg.com/originals/39/95/0b/39950b377c4890460964775594a7c717.gif)
 
-        ## Tables
-        | Syntax      | Description |
-        | ----------- | ----------- |
-        | Header      | Title       |
-        | Paragraph   | Text        |
+        Add tables by using three or more hyphens `---` to create each column’s header, and use pipes `|` to separate each column:
 
-    [guide(writing guide)]
-        ## Writing `imml`
-        Wrap text between square brackets `[example]`, then indent the next line to create a new page. Anything you write in that indented block will then be part of this new page.
+        | Title                 | Author                | Year
+        | --------------------- | --------------------- | ----
+        | The Forever War       | Joe Haldeman          | 1974
+        | Starship Troopers     | Robert A. Heinlein    | 1959
+        | Flowers for Algernon  | Daniel Keyes          | 1966
+        | Childhood's End       | Arthur C. Clarke      | 1953
 
-        When a page is create, its ID / hash `#` is inferred from the text inside the square brackets. As you can see from the address bar above, hashes are used to dictate which page is currently being displayed - this is achieved via CSS with the `target` selector.
+    [guide(detailed writing guide)]
+        ### Pages
+        Wrap text between square brackets `[example]`, then indent the next line to create a new page. Anything you write in that indented block will then be part of this new page. All text inside pages is parsed as [markdown](#markdown).
 
-        The first page you create in the file is considered the home page of your site and will be displayed when no hash is specified.
+        When a page is created, its ID / hash `#` is inferred from the text inside the square brackets. As you can see from the address bar above, hashes are used to dictate which page is currently being displayed - this is achieved purely via CSS with the `target` selector.
 
-        You can keep creating wrapped square-bracket text and indent to create nested pages. When a page is created inside a page, a link to the new page is automatically added to the page at the position where the new indented nested block starts:
+        ### Home page
+        The first page you create in the file is considered the home page of your site and will be displayed when no hash is specified. Anything before that is not rendered into the website - use that space for comments, attributions, or global `$options` (more on this later).
+
+        ### Nested pages
+        You can keep creating square-bracketed text in your page and indent again to create nested pages. When a page is created inside a page, a link to the new page is automatically added to the page at the position where the new indented nested block starts:
 
         [newpage(Nested page)]
             This page exists just to show an example of a nested page. There's really nothing else to see here! Use the breadcrumbs link at the top of the page to navigate back to a previous page.
+
+        Duplicated hashes / pages are automatically taken care of for you. If you create two pages `[page]` and `[page]`, the second one will be assigned a hash of `#page2`, but still be rendered as `page`.
+
+        ### Pages with label
+        If you want to use specify a label for the auto-generated link, include the label text between round brackets immediately before closing the square brackets: `[newpage(Fancy new page)]` will create a page with the hash `#newpage`, but the link to it will display `Fancy new page`.
             
-        If you prefer to not create a link automatically, wrap the text with double square brackets `[[example]]`. The page will still be created, but it will be up to link your visitor to it. You can do so by creating a markdown link to the page hash: `[Link to the page](#hiddenpage)`. If your page ID has spaces in it, wrap the markdown link in `< >`: `[Link to the page](<#hidden page>)`
+        ### Hidden pages
+        If you prefer to not create a link automatically, wrap the text with double square brackets `[[example]]`. The page will still be created and inserted in the document structure, but it will be up to you to link your visitors to it. You can do so by creating a markdown link to the page hash: `[Link to the page](#hiddenpage)`. If your page ID has spaces in it, wrap the markdown link in `< >`: `[Link to the page](<#hidden page>)`
 
-        Note that when creating a hidden page, its structure still follows the indentation rules and will be reflected in the breadcrums paths at the top of the page.
+        Note that when creating a hidden page, its location in the site still follows the indentation rules and will be reflected in the breadcrumbs at the top of the page.
 
-        If you want to use specify a label for the auto-generated link, include the label between round brackets just before closing the square brackets: `[newpage(Fancy new page)]` will create a page with the hash `#newpage`, but the link to it will display `Fancy new page`.
+        ### Comments / draft pages
+        Any line that starts with `//` is a comment and won't be parsed. Any page that that starts with `.` (i.e.  `[.page]`) won't be parsed, nor inserted in the document structure. Good for drafts.
 
-        Any line that starts with `$` is considered an `option` and is not displayed in the document structure, rather parsed and used under the bonnet to change the generated site appeareances / behaviour. Options ar written in the `$[option] : [value]` format, or can precede indented blocks for options with multi-line values, for example the `$style` option...
+        ### Options
+        Any line that starts with `$` is considered an `option` and is not displayed in the document structure, but it will be parsed and used under the bonnet to change the generated site appeareances / behaviour. 
+        
+        Options ar written in the `$[option] : [value]` format, or can precede indented blocks for options with multi-line values, like the `$style` option:
         ```
         \$style:
             body {
                 background: red;
             }
         ```
-        ...which will set the page background to red.
 
-        When added before the home page / at indentation zero, any `$option` will be applied to the whole website. Otherwise, it's applied to the page where the option text is being written. Note that some options are only valid in a context or the other.
+        When an `$option` is added before the home page / at indentation zero, its effect will be applied to the whole website. Otherwise, it's applied to the parent page. Note that some options are only valid in a context or the other.
 
         For a full list of options and their effects, [click here](#options).
 
         [[options]]
-            - `$accent-color: <color>`
-            Sets the accent color used on links.
+            - `$background-color: <color> || <color-light>,<color-dark>`
+            Sets the color used for the page background. Can be a comma-separate set of two values, where the first value be used for the light theme and the second value for the dark theme. If a single value is supplied, it will be used on both themes.
 
-            - `$style: <text>`
-            The value of this option will be appended as `<style>` on the page. Use it to override the default `imml` style. Can be written as an indented block to support multi-line text, for example:
-              ```
+            - `$text-color: <color> || <color-light>,<color-dark>`
+            Sets the color used for the page text. Can be a comma-separate set of two values, where the first value be used for the light theme and the second value for the dark theme. If a single value is supplied, it will be used on both themes.
+            
+            - `$accent-color: <color> || <color-light>,<color-dark>`
+            Sets the color for links. Can be a comma-separate set of two values, where the first value be used for the light theme and the second value for the dark theme. If a single value is supplied, it will be used on both themes.
+
+            - `$theme: <light || dark>`
+            By default, sites will use the `prefers-color-scheme` query to resolve the theme based on the user's preference. Set this option to always force a specific theme.
+
+            - `$title: <title>`
+            Sets the site title and the content of the `title` head tag.
+
+            - `$description: <description>`
+            Sets the content of the `description` head meta tag.
+            
+            - `$style: <style rules>`
+            The value of this option will be appended as a `<style>` tag on the page. Can be set as an indented block to support multi-line text. for example, the following option will set the will set the page background to red:
+            ```
             \$style:
+                <style>
                 body {
                     background: red;
                 }
+                </style>
             ```
-            will set the page background to red.
+            Note that it's not necessary to add the `<style></style>` tag, but doing so will enable css syntax highlighting.<br>
+            When set before the home page, the style will be applied to the same site. When set under a page, each rule will be prepended with the page ID so that the rules will only apply to that specific page.
+
+    [cli(command line interface)]
+        If you prefer to write locally, you can use the `imml` command line interface to generate the static html file.
+
+        With node.js installed, run `npx imml <path to your text file>`. By default it will create the file in a `dist` folder in your current working directory.
+        
+        The cli supports the following options:
+        ```
+        -o, --output <directory>  directory to export the generated html file to
+        -s, --style <file>        stylesheet file to use instead of the default one
+        -h, --help                display help for command
+        ```
+    
+    <br>
 
     [madewith(made with imml)]
-        Nobody here but chickens!
+        If you're using `imml` for a personal website, feel free to submit a pull request and add a link to your site. 
+        
     ---
 
     Made with ❤ by [leoncvlt](https://github.com/leoncvlt)
+
+$style:
+    <style>
+    img.site-logo {
+        height: 16px;
+        image-rendering: pixelated;
+    }
+    [data-theme="dark"] img.site-logo {
+        filter: invert();
+    }
+    a[target="_blank"]:after {
+        content: " ↗";
+    }
+    </style>
