@@ -99,7 +99,7 @@ const root = document.getElementById("site");
 const updateSite = (editor) => {
   clearTimeout(updateTimeout);
 
-  const currentPosition = editor.getPosition();
+  const currentState = editor.saveViewState();
   const currentScroll = root.scrollTop;
 
   localStorage.setItem("imml-document", editor.getValue());
@@ -124,7 +124,7 @@ const updateSite = (editor) => {
     window.location = window.location;
   }
   root.scrollTo(0, currentScroll);
-  editor.setPosition(currentPosition);
+  editor.restoreViewState(currentState);
   editor.focus();
 };
 
