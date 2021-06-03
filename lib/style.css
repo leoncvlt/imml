@@ -7,23 +7,15 @@
   --imml-accent-dark: dodgerblue;
 }
 
-html,
-[data-theme="light"] {
+:root {
   --imml-background: var(--imml-background-light);
   --imml-text: var(--imml-text-light);
   --imml-text-inverse: var(--imml-text-dark);
   --imml-accent: var(--imml-accent-light);
 }
 
-[data-theme="dark"] {
-  --imml-background: var(--imml-background-dark);
-  --imml-text: var(--imml-text-dark);
-  --imml-text-inverse: var(--imml-text-light);
-  --imml-accent: var(--imml-accent-dark);
-}
-
 @media (prefers-color-scheme: dark) {
-  html {
+  :root {
     --imml-background: var(--imml-background-dark);
     --imml-text: var(--imml-text-dark);
     --imml-text-inverse: var(--imml-text-light);
@@ -38,92 +30,92 @@ html {
   margin: 0;
 }
 
-#imml {
+body {
   font-family: sans-serif;
   min-height: 100%;
   color: var(--imml-text);
   background: var(--imml-background);
 }
 
-#imml .pages {
+.pages {
   margin: 0 auto;
   max-width: 600px;
   padding-left: 1em;
   padding-right: 1em;
 }
 
-#imml .page {
+.pages .page {
   padding-top: 2em;
   padding-bottom: 10em;
 }
 
-#imml .breadcrumbs {
+.page .breadcrumbs {
   font-family: monospace;
   text-transform: uppercase;
   font-size: small;
 }
 
-#imml p {
+p {
   line-height: 22px;
 }
 
-#imml a {
+a {
   width: fit-content;
   color: var(--imml-accent);
   border-bottom: 1px dotted var(--imml-accent);
   text-decoration: none;
 }
 
-#imml hr {
+hr {
   border-style: solid;
   border-bottom: 1px;
   margin-top: 1em;
   margin-bottom: 1em;
 }
 
-#imml blockquote {
+blockquote {
   border-left: 0.5em solid var(--imml-text-inverse);
   padding: 0 1em;
 }
 
-#imml blockquote p {
+blockquote p {
   font-style: italic;
 }
 
-#imml code {
+code {
   background: var(--imml-text-inverse);
   border-radius: 0.25em;
   padding: 0em 0.25em;
   font-family: monospace;
   display: inline-block;
 }
-#imml pre code {
+pre code {
   padding: 0.5em 0.5em;
 }
-#imml pre {
+pre {
   overflow-x: auto;
 }
 
-#imml img {
+img {
   max-width: 100%;
 }
 
-#imml table {
+table {
   margin-top: 0.25em;
   border-collapse: collapse;
   width: 100%;
 }
-#imml thead {
+thead {
   text-align: left;
   font-weight: bold;
 }
-#imml thead tr {
+thead tr {
   border-bottom: 1px solid;
 }
-#imml tr {
+tr {
   border-bottom: 1px dashed;
 }
-#imml td,
-#imml th {
+td,
+th {
   padding: 4px;
 }

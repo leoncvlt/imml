@@ -16,6 +16,20 @@ html {
   margin: 0;
 }
 
+html[data-theme="light"] {
+  --imml-background: var(--imml-background-light);
+  --imml-text: var(--imml-text-light);
+  --imml-text-inverse: var(--imml-text-dark);
+  --imml-accent: var(--imml-accent-light);
+}
+
+html[data-theme="dark"] {
+  --imml-background: var(--imml-background-dark);
+  --imml-text: var(--imml-text-dark);
+  --imml-text-inverse: var(--imml-text-light);
+  --imml-accent: var(--imml-accent-dark);
+}
+
 main {
   width: 100vw;
   min-height: 100%;
@@ -34,13 +48,13 @@ main {
   align-items: center;
   justify-content: center;
   background: black;
-  transition: transform 400ms;
+  transition: transform 500ms;
 }
 #loading.done {
   transform: translateY(-100%);
 }
 #loading .logo {
-  padding: 1em;
+  padding: 16px;
   background: white;
 }
 
@@ -51,8 +65,7 @@ img.logo {
 
 nav {
   height: 48px;
-  padding-left: 1rem;
-  padding-right: 1rem;
+  padding: 0 16px;
   background: black;
   color: white;
   display: flex;
@@ -67,11 +80,16 @@ nav .space {
   width: 24px;
 }
 
-nav,
-select,
-button {
-  font-family: Cascadia Code, Consolas, "DejaVu Sans Mono", Monaco, "Courier New", Courier,
-    monospace;
+/* ignore all page styles set by imml */
+nav a,
+nav button {
+  all: initial;
+  cursor: pointer;
+}
+
+nav .logo {
+  filter: invert();
+  margin-right: 32px;
 }
 
 #app {
@@ -100,46 +118,29 @@ button {
   padding: 1em 2em;
 }
 
-nav {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
-
-nav .logo {
-  filter: invert();
-  margin-right: 2em;
-}
-
-nav button {
+.icon {
   margin: 0 8px;
-}
-
-button {
-  border: none;
-  background: transparent;
-  cursor: pointer;
-}
-
-button.icon {
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
   height: 24px;
   width: 24px;
+}
+
+nav .icon {
   filter: invert();
 }
 
-button.save {
+.icon.save {
   background-image: var(--icon-save);
 }
-button.load {
+.icon.load {
   background-image: var(--icon-load);
 }
-button.export {
+.icon.export {
   background-image: var(--icon-export);
 }
-button.reset {
+.icon.reset {
   background-image: var(--icon-reset);
 }
 [data-theme="light"] button.theme {
@@ -148,9 +149,9 @@ button.reset {
 [data-theme="dark"] button.theme {
   background-image: var(--icon-light);
 }
-button.github {
+.icon.github {
   background-image: var(--icon-github);
 }
-button.npm {
+.icon.npm {
   background-image: var(--icon-npm);
 }

@@ -1,6 +1,6 @@
 {
   "name": "imml",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Create minimalist, blazing fast no-js websites from a single plain text file",
   "scripts": {
     "start": "vite ./editor",
