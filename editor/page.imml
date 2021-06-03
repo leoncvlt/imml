@@ -65,7 +65,7 @@ $description: generate static site from a single plain text file
 
         ---
 
-        Wrap `code` in `back-ticks` to render code inline. Alternatively, fence a block of text with three back-ticks ` ``` ` to render a block of code:
+        Wrap `code` in back-ticks `` ` `` to render code inline. Alternatively, fence a block of text with three back-ticks ` ``` ` to render a block of code:
         ```
         float Q_rsqrt( float number )
         {
@@ -97,6 +97,11 @@ $description: generate static site from a single plain text file
         | Starship Troopers     | Robert A. Heinlein    | 1959
         | Flowers for Algernon  | Daniel Keyes          | 1966
         | Childhood's End       | Arthur C. Clarke      | 1953
+
+        You can also write html directly if you need to embed videos / iframes or create elements with specific classes:
+
+        <video controls src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" style="width:100%;"/>
+        
 
     [guide(detailed writing guide)]
         ### Pages
@@ -201,12 +206,16 @@ $style:
         image-rendering: pixelated;
     }
     @media (prefers-color-scheme: dark) {
-        img.site-logo {
-            filter: invert();
+        img.site-logo { 
+            filter: invert(); 
         }
     }
-    [data-theme="light"] img.site-logo { filter: none; }
-    [data-theme="dark"] img.site-logo { filter: invert(); }
+    [data-theme="light"] img.site-logo { 
+        filter: none; 
+    }
+    [data-theme="dark"] img.site-logo { 
+        filter: invert(); 
+    }
     a.external:after {
         content: " ↗";
     }
