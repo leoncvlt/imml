@@ -195,6 +195,8 @@ $description: generate static site from a single plain text file
     [madewith(made with imml)]
         If you're using `imml` for a personal website, feel free to submit a pull request and add a link to your site. 
         
+        - [leoncvlt.com](https://leoncvlt.com)
+        
     ---
 
     Made with ❤ by [leoncvlt](https://github.com/leoncvlt)
