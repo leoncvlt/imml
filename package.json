@@ -26,9 +26,6 @@
     "monaco-editor": "^0.24.0",
     "vite": "^2.3.6"
   },
-  "dependencies": {
-    "marked": "^2.0.7"
-  },
   "files": [
     "lib"
   ],
@@ -40,5 +37,8 @@
       "require": "./lib/dist/imml.umd.js"
     }
   },
-  "bin": "./lib/make.js"
+  "bin": "./lib/make.js",
+  "dependencies": {
+    "marked": "^5.0.3"
+  }
 }
